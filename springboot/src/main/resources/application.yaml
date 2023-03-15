@@ -1,0 +1,16 @@
+server:
+  port: 9090
+
+
+spring:
+  datasource:
+    username: root
+    password: FXF20111782qwer
+    url: jdbc:mysql://localhost:3306/1bishe?serverTimeZone=UTC&userUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

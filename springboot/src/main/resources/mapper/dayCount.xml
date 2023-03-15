@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fxf.demo.mapper.DayCountMapper">
+    <update id="updateDayCountInfo">
+        update 1bishe.sys_dayCount
+        <set>
+            <if test="firstS != null">
+                firstS=#{firstS}
+            </if>
+            <if test="secondS != null">
+                secondS=#{secondS}
+            </if>
+            <if test="thirdS != null">
+                thirdS=#{thirdS}
+            </if>
+            <if test="fourthS != null">
+                fourthS=#{fourthS}
+            </if>
+            <if test="income != null">
+                income=#{income}
+            </if>
+            <if test="orderNum != null">
+                orderNum=#{orderNum}
+            </if>
+        </set>
+        <where>
+            dayId = #{dayId}
+        </where>
+    </update>
+
+    <select id="queryMaxId" resultType="Integer">
+        select Max(dayId) as id from 1bishe.sys_dayCount
+    </select>
+
+    <select id="getByDate" resultType="com.fxf.demo.entity.DayCount" >
+        select * from 1bishe.sys_dayCount
+        where TO_DAYs(createDate) = TO_DAYS(#{date})
+    </select>
+</mapper>

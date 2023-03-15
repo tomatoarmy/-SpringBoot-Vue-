@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fxf.demo.mapper.WeekCountMapper">
+
+    <update id="updateWeekCountInfo">
+        update 1bishe.sys_weekCount
+        <set>
+            <if test="monday != null">
+                monday=#{monday}
+            </if>
+            <if test="tuesday != null">
+                tuesday=#{tuesday}
+            </if>
+            <if test="wednesday != null">
+                wednesday=#{wednesday}
+            </if>
+            <if test="thursday != null">
+                thursday=#{thursday}
+            </if>
+            <if test="friday != null">
+                friday=#{friday}
+            </if>
+            <if test="saturday != null">
+                saturday=#{saturday}
+            </if>
+            <if test="sunday != null">
+                sunday=#{sunday}
+            </if>
+            <if test="income != null">
+                income=#{income}
+            </if>
+            <if test="orderNum != null">
+                orderNum=#{orderNum}
+            </if>
+        </set>
+        <where>
+            weekId = #{weekId}
+        </where>
+    </update>
+
+    <select id="queryMaxId" resultType="Integer">
+        select Max(weekId) as id from 1bishe.sys_weekCount
+    </select>
+
+    <select id="getByDate" resultType="com.fxf.demo.entity.WeekCount" >
+        SELECT * FROM 1bishe.sys_weekCount
+        WHERE YEARWEEK(date_format(createDate,'%Y-%m-%d')) = YEARWEEK(date_format(#{date},'%Y-%m-%d'))
+    </select>
+</mapper>

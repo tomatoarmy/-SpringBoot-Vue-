@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fxf.demo.mapper.UserMapper">
+    <!--mybatis-plus在自己-->
+    <!--<insert id="insert"></insert>-->
+
+
+    <select id="findAll" resultType="com.fxf.demo.entity.User">
+        select * from sys_user
+    </select>
+
+    <update id="update">
+        update 1bishe.sys_user
+        <set>
+            <if test="username != null">
+                username=#{username},
+            </if>
+            <if test="password != null">
+                password=#{password}
+            </if>
+            <if test="nickname != null">
+                nickname=#{nickname},
+            </if>
+            <if test="email != null">
+                email=#{email},
+            </if>
+            <if test="phone != null">
+                phone=#{phone},
+            </if>
+            <if test="address != null">
+                address=#{address}
+            </if>
+        </set>
+
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <!--！！！这里面的也要注释掉，名字也冲突了，会导致优先使用自定义的配置发生错误-->
+    <!--这个bug找了两个多小时！！！-->
+    <!--<select id="selectPage" resultType="com.fxf.demo.entity.User">
+        select * from 1bishe.sys_user
+
+            where username like concat('%',#{userName},'%')
+
+        limit #{pageNum}, #{pageSize}
+
+    </select>-->
+
+    <select id="selectCount" resultType="Integer">
+        select count(*) from 1bishe.sys_user
+
+            where username like concat('%',#{userName},'%')
+
+    </select>
+</mapper>

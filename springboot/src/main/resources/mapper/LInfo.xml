@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fxf.demo.mapper.LiveInfoMapper">
+    <select id="selectCount" resultType="Integer">
+        select count(*) from 1bishe.sys_liveInfo
+
+        where roomName like concat('%',#{roomName},'%')
+
+    </select>
+
+   <!-- <insert id="insert" parameterType="com.fxf.demo.entity.LiveInfo"  useGeneratedKeys="true" keyProperty="liveId" keyColumn="liveId">
+        insert into sys_liveinfo(liveId,roomId,customerName,customerGender,customerPhone,customerPop,liveDays,checkInDate,leaveDate,currentDeposit,customerId)
+        values(#{liveId},#{roomId},#{customerName},#{customerGender},#{customerPhone},#{customerPop},#{liveDays},#{checkInDate},#{leaveDate},#{currentDeposit},#{customerId})
+    </insert>-->
+</mapper>
